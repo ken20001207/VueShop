@@ -1,11 +1,11 @@
 <template>
   <div>
-    <el-row>
-      <ItemPreview
-        style="float: left"
+    <el-row style="text-align: center">
+      <ItemPreview 
+        style="display:inline-block;"
         v-for="i in PageItemAmount"
-        :item="getIteminSelectedClass[i + ((CurrentPage-1) * 10) - 1]"
-        v-bind:key="getIteminSelectedClass[i + ((CurrentPage-1) * 10) - 1].name"
+        :item="getIteminSelectedClass[i + ((CurrentPage-1) * 12) - 1]"
+        v-bind:key="getIteminSelectedClass[i + ((CurrentPage-1) * 12) - 1].name"
       ></ItemPreview>
     </el-row>
     <el-row type="flex" justify="center" style="margin-top:20px">
@@ -32,10 +32,10 @@ export default {
   computed: {
     // return the amount of items which should display on the table.
     PageItemAmount: function() {
-      if (this.TotalItemAmount - (this.CurrentPage - 1) * 10 > 10) {
-        return 10;
+      if (this.TotalItemAmount - (this.CurrentPage - 1) * 12 > 12) {
+        return 12;
       } else {
-        return this.TotalItemAmount - (this.CurrentPage - 1) * 10;
+        return this.TotalItemAmount - (this.CurrentPage - 1) * 12;
       }
     },
 
