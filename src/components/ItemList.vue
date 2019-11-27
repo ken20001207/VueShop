@@ -259,13 +259,13 @@ export default {
   },
   created: function() {
     this.$http
-      .get("http://sgp1.linyuanlin.com:3000/backend/classes")
+      .get("https://sgp1.linyuanlin.com:3000/backend/classes")
       .then(function(res) {
         this.ItemClasses = res.body.classes;
       })
       .then(
         this.$http
-          .get("http://sgp1.linyuanlin.com:3000/backend/items")
+          .get("https://sgp1.linyuanlin.com:3000/backend/items")
           .then(function(res) {
             this.Loding = false;
             this.Items = res.body.items;
