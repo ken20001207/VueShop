@@ -5,23 +5,23 @@
     <!-- navbar -->
     <div class="nav">
       <el-row type="flex" justify="center">
-        <el-col :xs="20" :sm="20" :md="20" :lg="18" :xl="16">
+        <el-col :xs="20" :sm="22" :md="20" :lg="18" :xl="16">
           <el-row>
             <el-button
               type="text"
               @click="classesDrawer = true"
-              style="float:left; margin: 10px; font-size: 16px"
+              style="float: left;font-size: 16px"
             >
               <i class="el-icon-notebook-1" /> 商品分類
             </el-button>
             <el-button
               type="text"
-              style="float:right; margin: 10px; font-size: 16px"
+              style="float: right; font-size: 16px"
               @click="shoppinCartDrawer = true"
             >
               <i class="el-icon-shopping-cart-full" /> 購物車
             </el-button>
-            <el-button type="text" style="float:right; margin: 10px; font-size: 16px">
+            <el-button type="text" style="float: right; margin-right: 16px; font-size: 16px">
               <i class="el-icon-s-order" />訂單查詢
             </el-button>
           </el-row>
