@@ -1,7 +1,9 @@
 <template>
-  <div v-loading="Loding"
-              element-loading-text="正在為您查看最新的商品"
-              element-loading-background="rgba(0, 0, 0, 0.8)">
+  <div
+    v-loading="Loding"
+    element-loading-text="正在為您查看最新的商品"
+    element-loading-background="rgba(0, 0, 0, 0.8)"
+  >
     <!-- navbar -->
     <div class="nav">
       <el-row type="flex" justify="center">
@@ -31,10 +33,7 @@
 
     <!-- Item classes Drawer -->
     <el-drawer :visible.sync="classesDrawer" direction="ltr" size="300px">
-      <el-menu
-        class="el-menu-vertical-demo"
-        style="text-align: left"
-      >
+      <el-menu class="el-menu-vertical-demo" style="text-align: left">
         <el-menu-item index="0" @click="SelcetedClass = 'all'">所有商品</el-menu-item>
         <el-menu-item
           v-for="item in ItemClasses"
@@ -46,8 +45,8 @@
     </el-drawer>
 
     <!-- Shopping cart Drawer -->
-    <el-drawer :visible.sync="shoppinCartDrawer" direction="rtl" size="300px">
-      <shoppincart :shoppingCarts="shoppingCarts"></shoppincart>
+    <el-drawer :visible.sync="shoppinCartDrawer" direction="rtl" size="100%">
+      <shoppincart :shoppingCart="shoppingCart" :sumprice="getShoppingcartSumPrice"></shoppincart>
     </el-drawer>
 
     <!-- container -->
@@ -87,10 +86,7 @@
         <el-row :gutter="10" type="flex" justify="center" align="center">
           <!-- 左邊的所有商品分類列表 -->
           <el-col :span="6" class="hidden-sm-and-down specials">
-            <el-menu
-              class="el-menu-vertical-demo"
-              style="text-align: left"
-            >
+            <el-menu class="el-menu-vertical-demo" style="text-align: left">
               <el-menu-item index="0" @click="SelcetedClass = 'all'">所有商品</el-menu-item>
               <el-menu-item
                 v-for="item in ItemClasses"
@@ -125,95 +121,98 @@ export default {
       ItemClasses: [
         {
           id: "class1",
-          name: "預設商品分類 1 / Default 1",
+          name: "商品類別載入中 .",
           special: 1
         },
         {
           id: "class2",
-          name: "預設商品分類 2 / Default 2",
+          name: "商品類別載入中 ..",
           special: 1
         },
         {
           id: "class3",
-          name: "預設商品分類 3 / Default 3",
+          name: "商品類別載入中 ...",
           special: 1
         },
         {
           id: "class4",
-          name: "預設商品分類 4 / Default 4",
+          name: "商品類別載入中 ....",
           special: 1
-        },
-        {
-          id: "class5",
-          name: "預設商品分類 5 / Default 5",
-          special: 0
-        },
-        {
-          id: "class6",
-          name: "預設商品分類 6 / Default 6",
-          special: 0
-        },
-        {
-          id: "class7",
-          name: "預設商品分類 7 / Default 7",
-          special: 0
-        },
-        {
-          id: "class8",
-          name: "預設商品分類 8 / Default 8",
-          special: 0
-        },
-        {
-          id: "class9",
-          name: "預設商品分類 9 / Default 9",
-          special: 0
-        },
-        {
-          id: "class10",
-          name: "預設商品分類 10 / Default 10",
-          special: 0
-        },
-        {
-          id: "class11",
-          name: "預設商品分類 11 / Default 11",
-          special: 0
-        },
-        {
-          id: "class12",
-          name: "預設商品分類 12 / Default 12",
-          special: 0
         }
       ],
       classesDrawer: false,
       shoppinCartDrawer: false,
       Items: [
         {
-          name: "範例商品1",
+          name: "商品載入中 .",
           id: 1,
           price: 250,
           class: "預設商品分類 1 / Default 1"
         },
         {
-          name: "範例商品2",
+          name: "商品載入中 ..",
           id: 1,
           price: 250,
           class: "預設商品分類 1 / Default 1"
         },
         {
-          name: "範例商品3",
+          name: "商品載入中 ...",
           id: 1,
           price: 250,
           class: "預設商品分類 1 / Default 1"
         },
         {
-          name: "範例商品4",
+          name: "商品載入中 ....",
           id: 1,
           price: 250,
           class: "預設商品分類 1 / Default 1"
         }
       ],
       Loding: true,
-      shoppingCarts: {}
+      shoppingCart: [
+        {
+          id: 1,
+          name: "範例商品1",
+          price: 250,
+          amount: 3
+        },
+        {
+          id: 1,
+          name: "範例商品1",
+          price: 250,
+          amount: 3
+        },
+        {
+          id: 1,
+          name: "範例商品1",
+          price: 250,
+          amount: 3
+        },
+        {
+          id: 1,
+          name: "範例商品1",
+          price: 250,
+          amount: 3
+        },
+        {
+          id: 1,
+          name: "範例商品1",
+          price: 250,
+          amount: 3
+        },
+        {
+          id: 1,
+          name: "範例商品1",
+          price: 250,
+          amount: 3
+        },
+        {
+          id: 1,
+          name: "範例商品1",
+          price: 250,
+          amount: 3
+        }
+      ]
     };
   },
   computed: {
@@ -250,6 +249,13 @@ export default {
       return this.ItemClasses.filter(function(theclass) {
         return theclass.special == 1;
       });
+    },
+    getShoppingcartSumPrice: function() {
+      var sumprice = 0;
+      for (const property in this.shoppingCart) {
+        sumprice += this.shoppingCart[property].price * this.shoppingCart[property].amount;
+      }
+      return sumprice;
     }
   },
   methods: {
@@ -288,7 +294,7 @@ export default {
   padding-bottom: 50px;
 }
 i {
-  margin-right:8px;
+  margin-right: 8px;
 }
 img {
   margin-top: 50px;
